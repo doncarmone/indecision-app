@@ -1,32 +1,29 @@
 <template>
     <section>
-        <h3>Counter: {{ count }}</h3>
-        <h3>Square: {{ squareCount }}</h3>
+        <h3>Counter: {{ counter }}</h3>
+        <h3 data-testid="square-label">Square: {{ squareCounter }}</h3>
         <div>
-            <button class="btn" @click="mov('s')">+1</button>
-            <button class="btn" @click="mov('r')">-1</button>
+            <button class="btn" @click="counter++">+1</button>
+            <button data-testid="btn-decrement" class="btn" @click="counter--">-1</button>
         </div>
     </section>
 </template>
 
 <script lang="ts" setup>
-// import { computed, ref } from 'vue';
+
 import { useCounter } from '../composables/useCounter';
 
 interface Props {
     value?: number;
 }
 const props = defineProps<Props>()
-const { count, squareCount } = useCounter(props.value ?? 5);
-
-// const count = ref(props.value ?? 5);
-// const squareCount = computed(() => count.value * count.value);
+const { counter, squareCounter } = useCounter(props.value ?? 5);
 
 const mov = (type: string) => {
     if (type === 's') {
-        count.value++;
+        counter.value++;
     } else {
-        count.value--;
+        counter.value--;
     }
 };
 </script>

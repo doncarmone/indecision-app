@@ -1,9 +1,9 @@
 import { ref, computed } from "vue";
 
-export const useCounter = (initialValue: number) => {
+export const useCounter = (initialValue: number = 5) => {
 
-    const count = ref(initialValue);
-    const squareCount = computed(() => count.value * count.value);
+    const counter = ref(initialValue);
+    const squareCounter = computed(() => counter.value * counter.value);
 
-    return { count, squareCount }
+    return { counter, squareCounter }
 } 
